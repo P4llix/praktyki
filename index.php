@@ -28,7 +28,7 @@ mysql_select_db("login");
 						<input type="text" name="login" placeholder="login" class="log"> <br>
 						<input type="text" name="haslo" placeholder="haslo" class="log"> <br>
 						<button type="submit" class="login" name="loguj">Zaloguj</button>
-						<a href="">zapomniałeś hasła?</a>
+						<a href="przypominanie.php">zapomniałeś hasła?</a>
 					</form>
 				</div>
 			</div>
