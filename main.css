@@ -1,0 +1,48 @@
+html{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+
+.tlo{
+    clip-path: polygon(0 0, 0% 100%, 20% 100%);
+    background-color: #1c71be;
+    width: 97vw;
+    height: 100vh;
+    position: absolute;
+}
+
+@media only screen and (max-width: 760px) {
+    .tlo{
+        clip-path: none;
+        background-color: white;
+    }
+  }
+
+.main{
+border: 2px solid #1c71be;
+ border-radius: 20px;
+ height: cover;
+}
+
+.log{
+    width: 100%;
+    margin-top: 2vh;
+    padding: 1vh;
+}
+
+.login{
+    width: 100%;
+    background-color: #1c71be;
+    color:white;
+    border: none;
+    margin-top: 3vh;
+    height: 5vh;
+}
