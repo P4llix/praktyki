@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 06 Maj 2019, 16:25
+-- Czas generowania: 07 Maj 2019, 16:39
 -- Wersja serwera: 5.5.39
 -- Wersja PHP: 5.4.31
 
@@ -28,18 +28,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `logowanie` (
 `ID` int(11) NOT NULL,
-  `Login` text NOT NULL,
-  `Haslo` text NOT NULL,
-  `Mail` text NOT NULL
+  `Login` text CHARACTER SET utf8 NOT NULL,
+  `Haslo` text CHARACTER SET utf8 NOT NULL,
+  `Mail` char(40) CHARACTER SET utf8 NOT NULL,
+  `dataLogSU` text CHARACTER SET utf8 NOT NULL,
+  `dataLogDe` text CHARACTER SET utf8 NOT NULL,
+  `imie` char(30) CHARACTER SET utf8 NOT NULL,
+  `nazwisko` char(30) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Zrzut danych tabeli `logowanie`
 --
 
-INSERT INTO `logowanie` (`ID`, `Login`, `Haslo`, `Mail`) VALUES
-(1, 'admin', 'admin', ''),
-(3, 'user1', 'user1', '');
+INSERT INTO `logowanie` (`ID`, `Login`, `Haslo`, `Mail`, `dataLogSU`, `dataLogDe`, `imie`, `nazwisko`) VALUES
+(1, 'admin', 'YWRtaW4=', 'admin.admin@gmail.com', '2019-05-07 16:38:08', '2019-05-07 16:36:33', 'Jan', 'Kowalski'),
+(3, 'user1', 'dXNlcjE=', 'user1@o2.pl', '2019-05-07 16:29:37', '2019-05-07 16:28:07', 'Mateusz', 'Nowak');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -49,7 +53,7 @@ INSERT INTO `logowanie` (`ID`, `Login`, `Haslo`, `Mail`) VALUES
 -- Indexes for table `logowanie`
 --
 ALTER TABLE `logowanie`
- ADD PRIMARY KEY (`ID`);
+ ADD PRIMARY KEY (`ID`), ADD KEY `Mail` (`Mail`);
 
 --
 -- AUTO_INCREMENT for dumped tables
