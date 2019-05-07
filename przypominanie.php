@@ -1,13 +1,8 @@
-<?php 
-
-session_start();
-mysql_connect("localhost","root","");
-mysql_select_db("login");
-
-?>
 <!DOCTYPE html>
-
-<html class="no-js">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,11 +17,10 @@ mysql_select_db("login");
 		<div class="container-fluid h-100">
 			<div class="row align-items-center h-100">
 				<div class="main col-md-4 col-sm-10 col-xs-10 px-5 pt-3 pb-3 mx-auto">
-					<form action="logowanie.php" method="post">
-						<input type="text" name="mail" placeholder="e-mail" class="log"> <br>
-						<input type="password" name="haslo" placeholder="haslo" class="log"> <br>
-						<button type="submit" class="login" name="loguj">Zaloguj</button>
-						<a href="przypominanie.php">zapomniałeś hasła?</a>
+					<form action="index.php" method="post">
+						Podaj login a na przypisany e-mail przyjdzie przypomnienie hasla <br> 
+                        <input type="text" class="log"> <br>
+                        <input type="submit" value="Wyślij" class="login">
 					</form>
 				</div>
 			</div>

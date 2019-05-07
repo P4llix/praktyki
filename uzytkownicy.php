@@ -23,10 +23,17 @@ mysql_select_db("login");
 			<div class="row align-items-center h-100">
 				<div class="main col-md-4 col-sm-10 col-xs-10 px-5 pt-3 pb-3 mx-auto">
 					<form action="logowanie.php" method="post">
-						<input type="text" name="mail" placeholder="e-mail" class="log"> <br>
-						<input type="password" name="haslo" placeholder="haslo" class="log"> <br>
-						<button type="submit" class="login" name="loguj">Zaloguj</button>
-						<a href="przypominanie.php">zapomniałeś hasła?</a>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" name="nazwa">
+                            <button class="btn btn-primary ml-2" type="submit" name="przyciskMail">Wyszukaj uzytkownika</button>
+                        </div> 
+<?php
+
+    $nazwa = $_POST['nazwa'];
+    
+
+
+?>
 					</form>
 				</div>
 			</div>

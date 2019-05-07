@@ -19,6 +19,17 @@ body{
     position: absolute;
 }
 
+
+
+
+.tlo2{
+    clip-path: polygon(0 0, 13% 0, 13% 100%, 0% 100%);
+    background-color: #1c71be;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+}
+
 @media only screen and (max-width: 760px) {
     .tlo{
         clip-path: none;
@@ -46,3 +57,15 @@ border: 2px solid #1c71be;
     margin-top: 3vh;
     height: 5vh;
 }
+
+.navbar.navbar-2 .navbar-toggler-icon {
+    background-image: url('https://mdbootstrap.com/img/svg/hamburger2.svg?color=fff');
+    }
+
+    .nawigacyjne{
+        position: absolute;
+    }
+
+    .fa-user-circle{
+        font-size: 150%;
+    }
