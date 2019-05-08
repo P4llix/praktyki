@@ -1,49 +1,254 @@
 <?php 
-
 session_start();
 mysql_connect("localhost","root","");
 mysql_select_db("login");
 
-?>
-<!DOCTYPE html>
 
-<html class="no-js">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="main.css">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    </head>
-    <body>
-		<div class="tlo"></div>
-		<div class="container-fluid h-100">
-			<div class="row align-items-center h-100">
-				<div class="main col-md-4 col-sm-10 col-xs-10 px-5 pt-3 pb-3 mx-auto">
-					<form action="logowanie.php" method="post">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" name="nazwa">
-                            <button class="btn btn-primary ml-2" type="submit" name="przyciskMail">Wyszukaj uzytkownika</button>
-                        </div> 
+$imie = $_SESSION['imie'];
+$mail = $_SESSION['mail'];
+$haslo = $_SESSION['haslo'];
+$login = $_SESSION['mlogin'];
+$nazwisko = $_SESSION['nazwisko'];
+$dataLogDe = $_SESSION['dataLogDe'];
+$dataLogSu = $_SESSION['dataLogSu'];
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Home</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- endinject -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  
+</head>
+
+<body>
+
+
+
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+        
+        <a class="navbar-brand brand-logo-mini" href="index.html">
+          <img src="images/logo-mini.svg" alt="logo" />
+        </a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center">
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item dropdown d-none d-xl-inline-block">
+            
+              <span class="profile-text"><?php echo $login[0];?></span>
+            
+
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="mdi mdi-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <div class="nav-link">
+              <div class="user-wrapper">
+                <div class="profile-image">
+                <i class="fas fa-user-circle menu-icon"></i>
+                </div>
+                <div class="text-wrapper">
+                <p class="profile-name"><?php echo $imie[0]." ".$nazwisko[0] ?></p>
+                  <p class="profile-name"><?php echo $login[0]; ?></p>
+                  <p class="profile-name"><?php echo $mail; ?></p>
+                  <div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="home.php">
+            <i class="far fa-chart-bar menu-icon"></i>
+              <span class="menu-title">Podsumowanie</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="zmiana.php" >
+            <i class="fas fa-user-shield menu-icon"></i>
+              <span class="menu-title">Zarządzanie kontem</span>
+            </a>
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="uzytkownicy.php">
+            <i class="fas fa-users menu-icon"></i>
+              <span class="menu-title">Dodaj użytkowników</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="modyfikacja.php">
+            <i class="fas fa-user-cog menu-icon"></i>
+              <span class="menu-title">Modyfikuj użytkownika</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="wylogowanie.php">
+            <i class="fas fa-sign-out-alt menu-icon"></i>
+              <span class="menu-title">Wyloguj się</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="col-12 stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title"><i class="fas fa-user-plus"></i> Dodawanie użytkownika</h4>
+                      
+                        
+                      <form method="post" action="" class="forms-sample " autocomplete="off">
+                      <input autocomplete="false" name="hidden" type="text" style="display:none;">
+                        <div class="form-group row">
+                          <label for="exampleInputEmail2" class="col-sm-3 col-form-label"> E-mail</label>
+                          <div class="col-sm-6">
+                            <input type="email" class="form-control" id="email" placeholder="email" name="mail">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Login</label>
+                          <div class="col-sm-6">
+                            <input type="text" class="form-control" id="login" placeholder="login" name="login">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Imie</label>
+                          <div class="col-sm-6">
+                            <input type="text" class="form-control" id="imie" placeholder="imie"  name="imie">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Nazwisko</label>
+                          <div class="col-sm-6">
+                            <input type="text" class="form-control" id="nazwisko" placeholder="nazwisko"  name="nazwisko">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                        <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Status</label>
+                        <div class="col-sm-3">
+                        <select class="custom-select" name="status">
+                          <option value="Odblokowany" selected>Odblokowany</option>
+                          <option value="Zablokowany">Zablokowany</option>
+                        </select>   
+                        </div>
+                        </div>
+                        <button type="submit" class="btn btn-success mr-2" name="dodawanie">Dodaj</button>
+                        <button class="btn btn-light">Anuluj</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+             </div>
+             </div>
+                  <h4 class="card-title ml-4"><i class="fas fa-user-friends"></i> Lista użytkoników</h4>
+                <div class="table-responsive">
 <?php
 
-    $nazwa = $_POST['nazwa'];
-    
+if(isset($_POST['dodawanie'])){
+
+    if($_POST['mail'] != "" && $_POST['login'] != "" && $_POST['imie'] != "" && $_POST['nazwisko'] != "" ){
+      
+        mysql_query("INSERT INTO logowanie (mail, login, imie, nazwisko, status) VALUES ('".$_POST['mail']."','".$_POST['login']."','".$_POST['imie']."','".$_POST['nazwisko']."','".$_POST['status']."')");
+    }
 
 
+
+}
+  
+echo "<table class='table table-striped'>
+<thead><tr>
+<th> ID </th>
+<th> Login </th>
+<th> Mail </th>
+<th> Poprawne logowanie </th>
+<th> Błędne logowanie </th>
+<th> Imie </th>
+<th> Nazwisko </th>
+<th> Status </th>
+</tr></thead><tbody>";
+
+$result = mysql_query("SELECT * FROM logowanie");
+
+while($row = mysql_fetch_array($result)) {
+         echo "<tr>";
+         echo "<td>".$row[0]."</td>";
+         echo "<td>".$row[1]."</td>";
+         echo "<td>".$row[3]."</td>";
+         echo "<td>".$row[4]."</td>";
+         echo "<td>".$row[5]."</td>";
+         echo "<td>".$row[6]."</td>";
+         echo "<td>".$row[7]."</td>";
+         if($row[8] == "Odblokowany"){ echo "<td><span class='badge badge-success'>".$row[8]."</span></td>"; }
+         elseif($row[8] == "Zablokowany"){ echo "<td><span class='badge badge-danger'>".$row[8]."</span></td>"; }
+         echo "</tr>";
+    }
+    echo '</tbody></table>';
 ?>
-					</form>
-				</div>
-			</div>
-		</div>
+
+                  
+                  
 
 
+                  
 
+</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <script src="vendors/js/vendor.bundle.addons.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="js/off-canvas.js"></script>
+  <script src="js/misc.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <!-- End custom js for this page-->
+</body>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </body>
 </html>

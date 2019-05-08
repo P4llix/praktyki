@@ -35,6 +35,9 @@ $dataLogSu = $_SESSION['dataLogSu'];
 </head>
 
 <body>
+
+
+
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -70,8 +73,9 @@ $dataLogSu = $_SESSION['dataLogSu'];
                 <i class="fas fa-user-circle menu-icon"></i>
                 </div>
                 <div class="text-wrapper">
-                <p class="profile-name"><?php echo $imie[0]." ".$nazwisko[0]; ?></p>
+                <p class="profile-name"><?php echo $imie[0]." ".$nazwisko[0] ?></p>
                   <p class="profile-name"><?php echo $login[0]; ?></p>
+                  <p class="profile-name"><?php echo $mail; ?></p>
                   <div>
                   </div>
                 </div>
@@ -94,7 +98,13 @@ $dataLogSu = $_SESSION['dataLogSu'];
           <li class="nav-item">
             <a class="nav-link" href="uzytkownicy.php">
             <i class="fas fa-users menu-icon"></i>
-              <span class="menu-title">Edycja użytkowników</span>
+              <span class="menu-title">Dodaj użytkowników</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="modyfikacja.php">
+            <i class="fas fa-user-cog menu-icon"></i>
+              <span class="menu-title">Modyfikuj użytkownika</span>
             </a>
           </li>
           <li class="nav-item">
@@ -116,47 +126,51 @@ $dataLogSu = $_SESSION['dataLogSu'];
                   <div class="card">
                     <div class="card-body">
                       <h4 class="card-title">Ustawienia uzytkownika</h4>
+                      <div class="wyswietlanie" name="wyswietlanie"></div>
                       <p class="card-description">
                         Zabezpieczenia
                       </p>
-                      <form method="post" action="" class="forms-sample">
+                      <form method="post" action="" class="forms-sample " autocomplete="off">
+                      <input autocomplete="false" name="hidden" type="text" style="display:none;">
                         <div class="form-group row">
                           <label for="exampleInputEmail2" class="col-sm-3 col-form-label"> E-mail</label>
                           <div class="col-sm-6">
-                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email" name="zmienionyMail" value="<?php echo $mail ?>">
+                            <input type="email" class="form-control border border-primary" id="email"placeholder="Enter email" name="zmienionyMail" value="">
+                          </div>
+                        </div>
+                        <div class="form-group row" id="potwierdzenieMaila">
+                          <label for="exampleInputEmail2" class="col-sm-3 col-form-label"> Wpisz ponownie E-mail</label>
+                          <div class="col-sm-6">
+                            <input type="email" class="form-control" id="potwierdzenieMaila"  name="potwierdzonyMail" value="">
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password</label>
+                          <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Hasło</label>
                           <div class="col-sm-6">
-                            <input type="password" class="form-control" id="exampleInputPassword2" name="zmienioneHaslo">
+                            <input type="password" class="form-control border border-primary" id="exampleInputPassword2" name="zmienioneHaslo">
                           </div>
                         </div>
+                        <div class="form-group row">
+                          <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Potwierdź hasło</label>
+                          <div class="col-sm-6">
+                            <input type="password" class="form-control" id="potwierdzoneHaslo" name="potwierdzoneHaslo">
+                          </div>
+                        </div>
+                        <h4 class="card-title mt-3">Dane osobowe</h4>
+                        <div class="form-group row">
+                          <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Imie</label>
+                          <div class="col-sm-6">
+                            <input type="text" class="form-control " name="imie" value="<?php echo $imie[0] ?>">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Nazwisko</label>
+                          <div class="col-sm-6">
+                            <input type="text" class="form-control" name="nazwisko" value="<?php echo $nazwisko[0] ?>">
+                          </div>
+                        </div>                        
                         <button type="submit" class="btn btn-success mr-2" name="zapisywanie">Zapisz</button>
-                        <?php 
 
-    if(isset($_POST['zapisywanie'])){
-
-        $zmienionyMail = $_POST['zmienionyMail'];
-
-        if($zmienionyMail != $mail){
-            mysql_query("UPDATE logowanie SET Mail='".$zmienionyMail."' WHERE mail='".$mail."'");
-            $_SESSION['mail'] = $zmienionyMail;
-        }
-        
-
-        $zmienioneHaslo = $_POST['zmienioneHaslo'];
-
-        if($zmienioneHaslo != $haslo){
-            $zmienioneHaslo = base64_encode($zmienioneHaslo);
-            mysql_query("UPDATE logowanie SET haslo='".$zmienioneHaslo."' WHERE mail='".$mail."'");
-            $_SESSION['haslo'] = $zmienionyMail;
-            
-          }
-      }
-    
-
-                        ?>
                         <button class="btn btn-light">Anuluj</button>
                       </form>
                     </div>
@@ -191,9 +205,80 @@ $dataLogSu = $_SESSION['dataLogSu'];
   <!-- inject:js -->
   <script src="js/off-canvas.js"></script>
   <script src="js/misc.js"></script>
+  <script src="main.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
   <!-- End custom js for this page-->
+
 </body>
 
 </html>
+<?php 
+
+if(isset($_POST['zapisywanie'])){
+
+    $zmienionyMail = $_POST['zmienionyMail'];
+    $potwierdzonyMail = $_POST['potwierdzonyMail'];
+
+
+    if($zmienionyMail == $potwierdzonyMail && $potwierdzonyMail != ""){
+        
+            mysql_query("UPDATE logowanie SET Mail='".$zmienionyMail."' WHERE mail='".$mail."'");
+            $_SESSION['mail'] = $zmienionyMail;
+
+            echo '<script language="javascript">';
+            echo "alert('Poprawnie zmieniono maila')";
+            echo '</script>';
+
+        
+        }
+    elseif($potwierdzonyMail != $zmienionyMail){
+
+      echo '<script language="javascript">';
+      echo "alert('Podane maile są różne)";
+      echo '</script>';
+        }        
+    
+
+    $zmienioneHaslo = $_POST['zmienioneHaslo'];
+    $potwierdzoneHaslo = $_POST['potwierdzoneHaslo'];
+
+    if($zmienioneHaslo == $potwierdzoneHaslo && $potwierdzoneHaslo != ""){
+
+        $zmienioneHaslo = base64_encode($zmienioneHaslo);
+        mysql_query("UPDATE logowanie SET haslo='".$zmienioneHaslo."' WHERE mail='".$mail."'");
+        $_SESSION['haslo'] = $zmienionyMail;
+
+          echo '<script language="javascript">';
+          echo "alert('Poprawnie zmieniono haslo')";
+          echo '</script>';
+        
+      }
+      elseif($potwierdzoneHaslo != $zmienioneHaslo){
+          echo '<script language="javascript">';
+          echo "alert('Podane hasła są różne')";
+          echo '</script>';
+      }
+
+
+      if($imie != $_POST['imie']){
+
+        mysql_query("UPDATE logowanie SET imie='".$_POST['imie']."' WHERE mail='".$mail."'");
+        $_SESSION['imie'] = $_POST['imie'];
+
+        
+      }
+       
+      
+      if($nazwisko != $_POST['nazwisko']){
+
+        mysql_query("UPDATE logowanie SET nazwisko='".$_POST['nazwisko']."' WHERE mail='".$mail."'");
+        $_SESSION['nazwisko'] = $_POST['nazwisko'];
+
+        
+      }      
+
+  }
+
+
+?>

@@ -47,7 +47,7 @@ $mail = $_SESSION['mail'];
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown d-none d-xl-inline-block">
             
-              <span class="profile-text"><?php echo $login[0];?></span>
+              <span class="profile-text"><?php echo $login[0]?></span>
             
 
           </li>
@@ -93,7 +93,13 @@ $mail = $_SESSION['mail'];
           <li class="nav-item">
             <a class="nav-link" href="uzytkownicy.php">
             <i class="fas fa-users menu-icon"></i>
-              <span class="menu-title">Edycja użytkowników</span>
+              <span class="menu-title">Dodaj użytkowników</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="modyfikacja.php">
+            <i class="fas fa-user-cog menu-icon"></i>
+              <span class="menu-title">Modyfikuj użytkownika</span>
             </a>
           </li>
           <li class="nav-item">
@@ -513,15 +519,7 @@ $mail = $_SESSION['mail'];
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
-        <footer class="footer">
-          <div class="container-fluid clearfix">
-            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
-              <a href="http://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with
-              <i class="mdi mdi-heart text-danger"></i>
-            </span>
-          </div>
-        </footer>
+        
         <!-- partial -->
       </div>
       <!-- main-panel ends -->
