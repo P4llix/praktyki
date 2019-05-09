@@ -49,12 +49,47 @@ $dataLogSu = $_SESSION['dataLogSu'];
         </a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
+
+      <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
+        <li class="nav-item">
+          <a href="uzytkownicy.php" class="nav-link"><i class="menu-icon fa fa-users"></i>Użytkownicy </a>
+          </a>
+        </li>
+          <li class="nav-item">
+            <a href="" class="nav-link"><i class="menu-icon fa fa-lock"></i>Bezpieczeństwo</a>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link"><i class="menu-icon fa fa-phone"></i>Kontakt</a>
+            </a>
+          </li>          
+      </ul>
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown d-none d-xl-inline-block">
             
-              <span class="profile-text"><?php echo $login[0];?></span>
+          <li class="nav-item dropdown d-none d-xl-inline-block">
+            <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+              <span class="profile-text">Witaj,  <?php echo $imie[0]; ?>!</span>
+              <img class="img-xs rounded-circle" src="images/faces/face1.jpg" alt="Profile image">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+              <a class="dropdown-item p-0">
+              </a>
+              <a class="dropdown-item mt-2" href="Zmiana.php">
+                Ustawienia konta
+              </a>
+              <a class="dropdown-item" href="Zmiana.php">
+                Zmień hasło
+              </a>
+              <a class="dropdown-item" href="">
+                Poczta
+              </a>
+              <a class="dropdown-item" href="wylogowanie.php">
+                Wyloguj się
+              </a>
+            </div>
+          </li>
             
-
           </li>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
@@ -71,10 +106,9 @@ $dataLogSu = $_SESSION['dataLogSu'];
             <div class="nav-link">
               <div class="user-wrapper">
                 <div class="profile-image">
-                <i class="fas fa-user-circle menu-icon"></i>
+                <img class="img-xs rounded-circle" src="images/faces/face1.jpg" alt="Profile image">
                 </div>
                 <div class="text-wrapper">
-                <p class="profile-name"><?php echo $imie[0]." ".$nazwisko[0] ?></p>
                   <p class="profile-name"><?php echo $login[0]; ?></p>
                   <p class="profile-name"><?php echo $mail; ?></p>
                   <div>
@@ -90,28 +124,22 @@ $dataLogSu = $_SESSION['dataLogSu'];
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="zmiana.php" >
-            <i class="fas fa-user-shield menu-icon"></i>
-              <span class="menu-title">Zarządzanie kontem</span>
+            <a class="nav-link" href="" >
+            <i class="fas fa-tasks menu-icon"></i>
+              <span class="menu-title">Projekty</span>
             </a>
 
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="uzytkownicy.php">
-            <i class="fas fa-users menu-icon"></i>
-              <span class="menu-title">Dodaj użytkowników</span>
+            <a class="nav-link" href="">
+            <i class="menu-icon fa   fa-folder"></i>
+              <span class="menu-title">Pliki</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="modyfikacja.php">
-            <i class="fas fa-user-cog menu-icon"></i>
-              <span class="menu-title">Modyfikuj użytkownika</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="wylogowanie.php">
-            <i class="fas fa-sign-out-alt menu-icon"></i>
-              <span class="menu-title">Wyloguj się</span>
+            <a class="nav-link" href="">
+            <i class="menu-icon fa fa-table"></i>
+              <span class="menu-title">Tabele</span>
             </a>
           </li>
         </ul>
@@ -124,87 +152,154 @@ $dataLogSu = $_SESSION['dataLogSu'];
                 <div class="col-12 stretch-card">
                   <div class="card">
                     <div class="card-body">
-                      <h4 class="card-title"> Wyszukaj użytkownika poprzez E-mail lub Login </h4>  
-                      <form method="post" action="" class="forms-sample ">
-                      <div class="input-group">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Wybierz</button>
-                                    <div class="dropdown-menu">
-                                        <button type="submit" name="pomailu" class="dropdown-item" href="#">Szukaj po mailu</button>
-                                        <button type="submit" name="pologinie" class="dropdown-item" href="#">Szukaj po loginie</button>
-                                    </div>
-                                </div>
-                                <input type="text" class="form-control" aria-label="Text input with dropdown button" name="szukajka">
-                            </div>
-                        <button type="submit" class="btn btn-success mr-2" name="dodawanie">Dodaj</button>
-                      
-                    </div>
+                      <h4 class="card-title"><i class="fas fa-user-cog"></i> Modyfikacja użytkownika</h4>
+                      <form method="post" action="" class="forms-sample " autocomplete="off">
+                      <input autocomplete="false" name="hidden" type="text" style="display:none;">
+                        <div class="form-group row">
+                          <label for="exampleInputEmail2" class="col-sm-3 col-form-label"> Podaj login</label>
+                          <div class="col-sm-6">
+                            <input type="text" class="form-control" id="email" placeholder="login" name="szukaniePoLoginie">
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mr-2" name="pokazywanie">Pokaż</button>
+                        <button class="btn btn-light">Anuluj</button>                                           
+                        
 <?php
 
-echo "<table class='table table-striped'>
-<thead><tr>
-<th> ID </th>
-<th> Login </th>
-<th> Mail </th>
-<th> Poprawne logowanie </th>
-<th> Błędne logowanie </th>
-<th> Imie </th>
-<th> Nazwisko </th>
-<th> Status </th>
-</tr></thead><tbody>";
-if(isset($_POST['pomailu'])){
+  if(isset($_POST['pokazywanie'])){
 
-    $szukajka = $_POST['szukajka'];
-    $resultID = mysql_query("SELECT ID FROM logowanie WHERE mail=".$szukajka."");
+  $szukajka = $_POST['szukaniePoLoginie'];
+  $result = mysql_query("SELECT * FROM logowanie WHERE login='".$szukajka."'");
+
+    if($result > 0){
 
 
-        echo "<tr>"; 
-        echo "<td>".$resultID."</td>";
 
-        //  if($result[8] == "Odblokowany"){ echo "<td><span class='badge badge-success'>".$result[8]."</span></td>"; }
-        //  elseif($result[8] == "Zablokowany"){ echo "<td><span class='badge badge-danger'>".$result[8]."</span></td>"; }
-         echo "</tr>";
-    
-    echo '</tbody></table>';
+      while($row = mysql_fetch_array($result)) {
+        
+        echo "
+        <div class='form-group mt-5'>
+        <label for='formGroupExampleInput'>ID</label>
+        <input type='text' class='form-control idmodyfikacji' id='formGroupExampleInput' readonly value='".$row[0]."'>
+        </div>";
+
+        $row0 = $row[0];
+        $row1 = $row[1];
+        $row2 = $row[2];
+        $row2 = base64_encode($row2);
+        $row3 = $row[3];
+        $row6 = $row[6];
+        $row7 = $row[7];
+        $row8 = $row[8];
+
+        echo "
+        <div class='form-group'>
+        <label for='formGroupExampleInput'>Login</label>
+        <input type='text' class='form-control loginmodyfikacji' id='formGroupExampleInput'  value='".$row[1]."'>
+        </div>";
+        
+        echo "
+        <div class='form-group'>
+        <label for='formGroupExampleInput'>Hasło</label>
+        <input type='password' class='form-control haslomodyfikacji' id='formGroupExampleInput' value='".$row[2]."'>
+        </div>";
+
+        echo "
+        <div class='form-group'>
+        <label for='formGroupExampleInput'>Mail</label>
+        <input type='text' class='form-control mailmodyfikacji' id='formGroupExampleInput' value='".$row[3]."'>
+        </div>";
+
+        echo "
+        <div class='form-group'>
+        <label for='formGroupExampleInput'>Imie</label>
+        <input type='text' class='form-control imiemodyfikacji' id='formGroupExampleInput' value='".$row[6]."'>
+        </div>";
+
+        echo "
+        <div class='form-group'>
+        <label for='formGroupExampleInput'>Nazwisko</label>
+        <input type='text' class='form-control nazwiskomodyfikacji' id='formGroupExampleInput'value='".$row[7]."'>
+        </div>";
+
+      if ($row[8] == "Zablokowany"){
+
+        echo "
+        <select class='statusdomodyfikacji custom-select'>
+          <option value='Odblokowany' >Odblokowany</option>
+          <option value='Zablokowany' selected>Zablokoway</option>
+         </select>";
+
+        }
+
+      elseif($row[8] == "Odblokowany"){
+
+        echo "
+        <select class='statusdomodyfikacji custom-select'>
+          <option value='Odblokowany' selected>Odblokowany</option>
+          <option value='Zablokowany' >Zablokowany</option>
+         </select>";
+      } 
+    } 
+    mysql_query("UPDATE logowanie SET login='".$row1."' WHERE mail='".$row3."'");
+    mysql_query("UPDATE logowanie SET haslo='".$row2."' WHERE mail='".$row3."'");
+    mysql_query("UPDATE logowanie SET mail='".$row3."' WHERE mail='".$row3."'");
+    mysql_query("UPDATE logowanie SET imie='".$row6."' WHERE mail='".$row3."'");
+    mysql_query("UPDATE logowanie SET nazwisko='".$row7."' WHERE mail='".$row3."'");
+    mysql_query("UPDATE logowanie SET status='".$row8."' WHERE mail='".$row3."'");
+    if(isset($_POST['zapisanie'])){
+      echo $row0;
+    }
+  }  
+                                            
+else{
+  echo "Nie znaleziono";
 }
 
+  }
 
-if(isset($_POST['pologinie'])){
-
-    $szukajka = $_POST['szukajka'];
-    $result = mysql_query("SELECT * FROM logowanie WHERE login = ".$szukajka."");
-    
-    while($row = mysql_fetch_array($result)) {
-             echo "<tr>";
-             echo "<td>".$row[0]."</td>";
-             echo "<td>".$row[1]."</td>";
-             echo "<td>".$row[3]."</td>";
-             echo "<td>".$row[4]."</td>";
-             echo "<td>".$row[5]."</td>";
-             echo "<td>".$row[6]."</td>";
-             echo "<td>".$row[7]."</td>";
-             if($row[8] == "Odblokowany"){ echo "<td><span class='badge badge-success'>".$row[8]."</span></td>"; }
-             elseif($row[8] == "Zablokowany"){ echo "<td><span class='badge badge-danger'>".$row[8]."</span></td>"; }
-             echo "</tr>";
-        }
-        echo '</tbody></table>';
-    }
 
 ?>
-                    </form>
+
+<div id="ukrycie"><button type="submit" class="btn btn-primary mr-2" name="zapisanie">Zapisz</button></div>
+
+<?php
+
+?>
+</form>
+                      </div>                     
+                    </div>
                   </div>
+                </div>               
+                </div>                  
+                </div>
+                </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <!-- partial -->
       </div>
+      <!-- main-panel ends -->
     </div>
+    <!-- page-body-wrapper ends -->
   </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
   <script src="vendors/js/vendor.bundle.base.js"></script>
   <script src="vendors/js/vendor.bundle.addons.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
   <script src="js/off-canvas.js"></script>
   <script src="js/misc.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <!-- End custom js for this page-->
 </body>
 
 </html>

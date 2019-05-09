@@ -49,12 +49,47 @@ $dataLogSu = $_SESSION['dataLogSu'];
         </a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
+
+      <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
+        <li class="nav-item">
+          <a href="uzytkownicy.php" class="nav-link"><i class="menu-icon fa fa-users"></i>Użytkownicy </a>
+          </a>
+        </li>
+          <li class="nav-item">
+            <a href="modyfikacja.php" class="nav-link"><i class="menu-icon fa fa-lock"></i>Bezpieczeństwo</a>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link"><i class="menu-icon fa fa-phone"></i>Kontakt</a>
+            </a>
+          </li>          
+      </ul>
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown d-none d-xl-inline-block">
             
-              <span class="profile-text"><?php echo $login[0];?></span>
+          <li class="nav-item dropdown d-none d-xl-inline-block">
+            <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+              <span class="profile-text">Witaj,  <?php echo $imie[0]; ?>!</span>
+              <img class="img-xs rounded-circle" src="images/faces/face1.jpg" alt="Profile image">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+              <a class="dropdown-item p-0">
+              </a>
+              <a class="dropdown-item mt-2" href="Zmiana.php">
+                Ustawienia konta
+              </a>
+              <a class="dropdown-item" href="Zmiana.php">
+                Zmień hasło
+              </a>
+              <a class="dropdown-item" href="">
+                Poczta
+              </a>
+              <a class="dropdown-item" href="wylogowanie.php">
+                Wyloguj się
+              </a>
+            </div>
+          </li>
             
-
           </li>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
@@ -71,10 +106,9 @@ $dataLogSu = $_SESSION['dataLogSu'];
             <div class="nav-link">
               <div class="user-wrapper">
                 <div class="profile-image">
-                <i class="fas fa-user-circle menu-icon"></i>
+                <img class="img-xs rounded-circle" src="images/faces/face1.jpg" alt="Profile image">
                 </div>
                 <div class="text-wrapper">
-                <p class="profile-name"><?php echo $imie[0]." ".$nazwisko[0] ?></p>
                   <p class="profile-name"><?php echo $login[0]; ?></p>
                   <p class="profile-name"><?php echo $mail; ?></p>
                   <div>
@@ -90,28 +124,22 @@ $dataLogSu = $_SESSION['dataLogSu'];
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="zmiana.php" >
-            <i class="fas fa-user-shield menu-icon"></i>
-              <span class="menu-title">Zarządzanie kontem</span>
+            <a class="nav-link" href="" >
+            <i class="fas fa-tasks menu-icon"></i>
+              <span class="menu-title">Projekty</span>
             </a>
 
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="uzytkownicy.php">
-            <i class="fas fa-users menu-icon"></i>
-              <span class="menu-title">Dodaj użytkowników</span>
+            <a class="nav-link" href="">
+            <i class="menu-icon fa   fa-folder"></i>
+              <span class="menu-title">Pliki</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="modyfikacja.php">
-            <i class="fas fa-user-cog menu-icon"></i>
-              <span class="menu-title">Modyfikuj użytkownika</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="wylogowanie.php">
-            <i class="fas fa-sign-out-alt menu-icon"></i>
-              <span class="menu-title">Wyloguj się</span>
+            <a class="nav-link" href="">
+            <i class="menu-icon fa fa-table"></i>
+              <span class="menu-title">Tabele</span>
             </a>
           </li>
         </ul>
@@ -162,9 +190,46 @@ $dataLogSu = $_SESSION['dataLogSu'];
                         </select>   
                         </div>
                         </div>
-                        <button type="submit" class="btn btn-success mr-2" name="dodawanie">Dodaj</button>
+
+                        <button type="submit" class="btn btn-primary mr-2" name="dodawanie">Dodaj</button>
                         <button class="btn btn-light">Anuluj</button>
+                        
                       </form>
+
+                      <h4 class="card-title mt-5"><i class="fas fa-user-minus"></i> Usuwanie użytkownika</h4>
+
+                        <form method="post" action="">
+                        <input autocomplete="false" name="hidden" type="text" style="display:none;">
+                        <div class="form-group row">
+                          <label for="exampleInputEmail2" class="col-sm-3 col-form-label"> E-mail</label>
+                          <div class="col-sm-6">
+                            <input type="email" class="form-control" id="email" placeholder="email" name="usuwanieMail">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Login</label>
+                          <div class="col-sm-6">
+                            <input type="text" class="form-control" id="login" placeholder="login" name="usuwanieLogin">
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mr-2" name="usuwanie">Usuń</button>
+                        <button class="btn btn-light">Anuluj</button>                        
+                        </form>
+
+                      <h4 class="card-title mt-5"><i class="fas fa-user-tag"></i> Szukanie użytkownika</h4>
+
+                      <form method="post" action="">
+                      <div class="input-group">
+                        
+                            <div class="input-group-prepend">
+                                <button class="btn btn-primary" type="submit" name="szukaj">Szukaj</button>
+                              </div>
+                                <input type="text" class="form-control" aria-label="Text input with dropdown button" name="szukajka">
+                              </div>
+                            </form>
+                            <!-- szukanie php -->
+                            <?php include 'szukanie.php';?>                  
+                    </div>                     
                     </div>
                   </div>
                 </div>
@@ -173,51 +238,10 @@ $dataLogSu = $_SESSION['dataLogSu'];
              </div>
                   <h4 class="card-title ml-4"><i class="fas fa-user-friends"></i> Lista użytkoników</h4>
                 <div class="table-responsive">
-<?php
-
-if(isset($_POST['dodawanie'])){
-
-    if($_POST['mail'] != "" && $_POST['login'] != "" && $_POST['imie'] != "" && $_POST['nazwisko'] != "" ){
-      
-        mysql_query("INSERT INTO logowanie (mail, login, imie, nazwisko, status) VALUES ('".$_POST['mail']."','".$_POST['login']."','".$_POST['imie']."','".$_POST['nazwisko']."','".$_POST['status']."')");
-    }
 
 
-
-}
-  
-echo "<table class='table table-striped'>
-<thead><tr>
-<th> ID </th>
-<th> Login </th>
-<th> Mail </th>
-<th> Poprawne logowanie </th>
-<th> Błędne logowanie </th>
-<th> Imie </th>
-<th> Nazwisko </th>
-<th> Status </th>
-</tr></thead><tbody>";
-
-$result = mysql_query("SELECT * FROM logowanie");
-
-while($row = mysql_fetch_array($result)) {
-         echo "<tr>";
-         echo "<td>".$row[0]."</td>";
-         echo "<td>".$row[1]."</td>";
-         echo "<td>".$row[3]."</td>";
-         echo "<td>".$row[4]."</td>";
-         echo "<td>".$row[5]."</td>";
-         echo "<td>".$row[6]."</td>";
-         echo "<td>".$row[7]."</td>";
-         if($row[8] == "Odblokowany"){ echo "<td><span class='badge badge-success'>".$row[8]."</span></td>"; }
-         elseif($row[8] == "Zablokowany"){ echo "<td><span class='badge badge-danger'>".$row[8]."</span></td>"; }
-         echo "</tr>";
-    }
-    echo '</tbody></table>';
-?>
-
-                  
-                  
+                  <!-- Wyswieltanie listy uzytkownikow -->
+   <?php include "wyswietlanieListyUzytkownikow.php"; ?>
 
 
                   

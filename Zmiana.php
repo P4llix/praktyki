@@ -32,6 +32,7 @@ $dataLogSu = $_SESSION['dataLogSu'];
   <link rel="stylesheet" href="css/style.css">
   <!-- endinject -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  
 </head>
 
 <body>
@@ -48,12 +49,47 @@ $dataLogSu = $_SESSION['dataLogSu'];
         </a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
+
+      <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
+        <li class="nav-item">
+          <a href="uzytkownicy.php" class="nav-link"><i class="menu-icon fa fa-users"></i>Użytkownicy </a>
+          </a>
+        </li>
+          <li class="nav-item">
+            <a href="modyfikacja.php" class="nav-link"><i class="menu-icon fa fa-lock"></i>Bezpieczeństwo</a>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link"><i class="menu-icon fa fa-phone"></i>Kontakt</a>
+            </a>
+          </li>          
+      </ul>
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown d-none d-xl-inline-block">
             
-              <span class="profile-text"><?php echo $login[0];?></span>
+          <li class="nav-item dropdown d-none d-xl-inline-block">
+            <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+              <span class="profile-text">Witaj,  <?php echo $imie[0]; ?>!</span>
+              <img class="img-xs rounded-circle" src="images/faces/face1.jpg" alt="Profile image">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+              <a class="dropdown-item p-0">
+              </a>
+              <a class="dropdown-item mt-2" href="Zmiana.php">
+                Ustawienia konta
+              </a>
+              <a class="dropdown-item" href="Zmiana.php">
+                Zmień hasło
+              </a>
+              <a class="dropdown-item" href="">
+                Poczta
+              </a>
+              <a class="dropdown-item" href="wylogowanie.php">
+                Wyloguj się
+              </a>
+            </div>
+          </li>
             
-
           </li>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
@@ -70,10 +106,9 @@ $dataLogSu = $_SESSION['dataLogSu'];
             <div class="nav-link">
               <div class="user-wrapper">
                 <div class="profile-image">
-                <i class="fas fa-user-circle menu-icon"></i>
+                <img class="img-xs rounded-circle" src="images/faces/face1.jpg" alt="Profile image">
                 </div>
                 <div class="text-wrapper">
-                <p class="profile-name"><?php echo $imie[0]." ".$nazwisko[0] ?></p>
                   <p class="profile-name"><?php echo $login[0]; ?></p>
                   <p class="profile-name"><?php echo $mail; ?></p>
                   <div>
@@ -89,33 +124,26 @@ $dataLogSu = $_SESSION['dataLogSu'];
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="zmiana.php" >
-            <i class="fas fa-user-shield menu-icon"></i>
-              <span class="menu-title">Zarządzanie kontem</span>
+            <a class="nav-link" href="" >
+            <i class="fas fa-tasks menu-icon"></i>
+              <span class="menu-title">Projekty</span>
             </a>
 
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="uzytkownicy.php">
-            <i class="fas fa-users menu-icon"></i>
-              <span class="menu-title">Dodaj użytkowników</span>
+            <a class="nav-link" href="">
+            <i class="menu-icon fa   fa-folder"></i>
+              <span class="menu-title">Pliki</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="modyfikacja.php">
-            <i class="fas fa-user-cog menu-icon"></i>
-              <span class="menu-title">Modyfikuj użytkownika</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="wylogowanie.php">
-            <i class="fas fa-sign-out-alt menu-icon"></i>
-              <span class="menu-title">Wyloguj się</span>
+            <a class="nav-link" href="">
+            <i class="menu-icon fa fa-table"></i>
+              <span class="menu-title">Tabele</span>
             </a>
           </li>
         </ul>
       </nav>
-      <!-- partial -->
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
@@ -213,72 +241,6 @@ $dataLogSu = $_SESSION['dataLogSu'];
 </body>
 
 </html>
+
+<?php include "zmianaUstawienKonta.php";?>
 <?php 
-
-if(isset($_POST['zapisywanie'])){
-
-    $zmienionyMail = $_POST['zmienionyMail'];
-    $potwierdzonyMail = $_POST['potwierdzonyMail'];
-
-
-    if($zmienionyMail == $potwierdzonyMail && $potwierdzonyMail != ""){
-        
-            mysql_query("UPDATE logowanie SET Mail='".$zmienionyMail."' WHERE mail='".$mail."'");
-            $_SESSION['mail'] = $zmienionyMail;
-
-            echo '<script language="javascript">';
-            echo "alert('Poprawnie zmieniono maila')";
-            echo '</script>';
-
-        
-        }
-    elseif($potwierdzonyMail != $zmienionyMail){
-
-      echo '<script language="javascript">';
-      echo "alert('Podane maile są różne)";
-      echo '</script>';
-        }        
-    
-
-    $zmienioneHaslo = $_POST['zmienioneHaslo'];
-    $potwierdzoneHaslo = $_POST['potwierdzoneHaslo'];
-
-    if($zmienioneHaslo == $potwierdzoneHaslo && $potwierdzoneHaslo != ""){
-
-        $zmienioneHaslo = base64_encode($zmienioneHaslo);
-        mysql_query("UPDATE logowanie SET haslo='".$zmienioneHaslo."' WHERE mail='".$mail."'");
-        $_SESSION['haslo'] = $zmienionyMail;
-
-          echo '<script language="javascript">';
-          echo "alert('Poprawnie zmieniono haslo')";
-          echo '</script>';
-        
-      }
-      elseif($potwierdzoneHaslo != $zmienioneHaslo){
-          echo '<script language="javascript">';
-          echo "alert('Podane hasła są różne')";
-          echo '</script>';
-      }
-
-
-      if($imie != $_POST['imie']){
-
-        mysql_query("UPDATE logowanie SET imie='".$_POST['imie']."' WHERE mail='".$mail."'");
-        $_SESSION['imie'] = $_POST['imie'];
-
-        
-      }
-       
-      
-      if($nazwisko != $_POST['nazwisko']){
-
-        mysql_query("UPDATE logowanie SET nazwisko='".$_POST['nazwisko']."' WHERE mail='".$mail."'");
-        $_SESSION['nazwisko'] = $_POST['nazwisko'];
-
-        
-      }      
-
-  }
-
-
-?>
