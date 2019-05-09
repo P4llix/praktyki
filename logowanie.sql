@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 08 Maj 2019, 16:39
+-- Czas generowania: 09 Maj 2019, 16:50
 -- Wersja serwera: 5.5.39
 -- Wersja PHP: 5.4.31
 
@@ -43,13 +43,12 @@ CREATE TABLE IF NOT EXISTS `logowanie` (
 --
 
 INSERT INTO `logowanie` (`ID`, `Login`, `Haslo`, `Mail`, `dataLogSU`, `dataLogDe`, `imie`, `nazwisko`, `status`) VALUES
-(1, 'admin', 'YWRtaW4=', 'admin@o2.pl', '2019-05-08 15:24:19', '2019-05-07 16:36:33', 'Adam', 'Kowalski', 'Odblokowany'),
-(2, 'administrator', '', 'administracja@wp.pl', '', '', 'Krzysztof', 'zxc', 'Odblokowany'),
-(3, 'user1', 'dXNlcjE=', 'user1.user1@o2.pl', '2019-05-08 14:26:47', '2019-05-08 14:26:39', 'Adrian', 'Polak', 'Odblokowany'),
-(4, 'user2', '', 'user2.user2@wp.pl', '2019-05-08 15:24:07', '2019-05-08 12:44:09', 'PaweÅ‚', 'Donald', 'Zablokowany'),
-(5, 'user3', '', 'user3.user3@onet.pl', '', '', 'mikoÅ‚aj', 'qwerty', 'Zablokowany'),
+(1, 'admin', 'YWRtaW4=', 'admin@o2.pl', '2019-05-09 16:18:47', '2019-05-07 16:36:33', 'Adam', 'Kowalski', 'Odblokowany'),
+(2, 'administrator', '', 'admin@wp.pl', '2019-05-09 12:07:25', '', 'Krzysztof', 'zxc', 'Odblokowany'),
+(3, 'user1', 'dXNlcjE=', 'user1.user1@o2.pl', '2019-05-09 09:01:37', '2019-05-08 14:26:39', 'Adrian', 'Polak', 'Odblokowany'),
+(4, 'user2', '', 'user2.user2@wp.pl', '2019-05-09 12:06:59', '2019-05-08 12:44:09', 'kaczor', 'Donald', 'Zablokowany'),
 (6, 'user4', '', 'user4.user4@onet.pl', '', '', 'Albert', 'asdfg', 'Odblokowany'),
-(7, 'user3', '', 'user3.user3@onet.pl', '', '', 'mikoÅ‚aj', 'qwerty', 'Zablokowany');
+(7, 'user5', '', 'user5.user5@onet.pl', '', '', 'mikoÅ‚aj', 'qwerty', 'Zablokowany');
 
 --
 -- Indeksy dla zrzutów tabel
