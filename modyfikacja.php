@@ -164,108 +164,10 @@ $dataLogSu = $_SESSION['dataLogSu'];
                         <button type="submit" class="btn btn-primary mr-2" name="pokazywanie">Pokaż</button>
                         <button class="btn btn-light">Anuluj</button>                                           
                         
-<?php
-
-  if(isset($_POST['pokazywanie'])){
-
-  $szukajka = $_POST['szukaniePoLoginie'];
-  $result = mysql_query("SELECT * FROM logowanie WHERE login='".$szukajka."'");
-
-    if($result > 0){
 
 
 
-      while($row = mysql_fetch_array($result)) {
-        
-        echo "
-        <div class='form-group mt-5'>
-        <label for='formGroupExampleInput'>ID</label>
-        <input type='text' class='form-control idmodyfikacji' id='formGroupExampleInput' readonly value='".$row[0]."'>
-        </div>";
 
-        $row0 = $row[0];
-        $row1 = $row[1];
-        $row2 = $row[2];
-        $row2 = base64_encode($row2);
-        $row3 = $row[3];
-        $row6 = $row[6];
-        $row7 = $row[7];
-        $row8 = $row[8];
-
-        echo "
-        <div class='form-group'>
-        <label for='formGroupExampleInput'>Login</label>
-        <input type='text' class='form-control loginmodyfikacji' id='formGroupExampleInput'  value='".$row[1]."'>
-        </div>";
-        
-        echo "
-        <div class='form-group'>
-        <label for='formGroupExampleInput'>Hasło</label>
-        <input type='password' class='form-control haslomodyfikacji' id='formGroupExampleInput' value='".$row[2]."'>
-        </div>";
-
-        echo "
-        <div class='form-group'>
-        <label for='formGroupExampleInput'>Mail</label>
-        <input type='text' class='form-control mailmodyfikacji' id='formGroupExampleInput' value='".$row[3]."'>
-        </div>";
-
-        echo "
-        <div class='form-group'>
-        <label for='formGroupExampleInput'>Imie</label>
-        <input type='text' class='form-control imiemodyfikacji' id='formGroupExampleInput' value='".$row[6]."'>
-        </div>";
-
-        echo "
-        <div class='form-group'>
-        <label for='formGroupExampleInput'>Nazwisko</label>
-        <input type='text' class='form-control nazwiskomodyfikacji' id='formGroupExampleInput'value='".$row[7]."'>
-        </div>";
-
-      if ($row[8] == "Zablokowany"){
-
-        echo "
-        <select class='statusdomodyfikacji custom-select'>
-          <option value='Odblokowany' >Odblokowany</option>
-          <option value='Zablokowany' selected>Zablokoway</option>
-         </select>";
-
-        }
-
-      elseif($row[8] == "Odblokowany"){
-
-        echo "
-        <select class='statusdomodyfikacji custom-select'>
-          <option value='Odblokowany' selected>Odblokowany</option>
-          <option value='Zablokowany' >Zablokowany</option>
-         </select>";
-      } 
-    } 
-    mysql_query("UPDATE logowanie SET login='".$row1."' WHERE mail='".$row3."'");
-    mysql_query("UPDATE logowanie SET haslo='".$row2."' WHERE mail='".$row3."'");
-    mysql_query("UPDATE logowanie SET mail='".$row3."' WHERE mail='".$row3."'");
-    mysql_query("UPDATE logowanie SET imie='".$row6."' WHERE mail='".$row3."'");
-    mysql_query("UPDATE logowanie SET nazwisko='".$row7."' WHERE mail='".$row3."'");
-    mysql_query("UPDATE logowanie SET status='".$row8."' WHERE mail='".$row3."'");
-    if(isset($_POST['zapisanie'])){
-      echo $row0;
-    }
-  }  
-                                            
-else{
-  echo "Nie znaleziono";
-}
-
-  }
-
-
-?>
-
-<div id="ukrycie"><button type="submit" class="btn btn-primary mr-2" name="zapisanie">Zapisz</button></div>
-
-<?php
-
-?>
 </form>
                       </div>                     
                     </div>

@@ -193,6 +193,7 @@ $dataLogSu = $_SESSION['dataLogSu'];
 
                         <button type="submit" class="btn btn-primary mr-2" name="dodawanie">Dodaj</button>
                         <button class="btn btn-light">Anuluj</button>
+                        <?php include "dodawanie.php"; ?>
                         
                       </form>
 
@@ -239,14 +240,72 @@ $dataLogSu = $_SESSION['dataLogSu'];
                   <h4 class="card-title ml-4"><i class="fas fa-user-friends"></i> Lista użytkoników</h4>
                 <div class="table-responsive">
 
-
+  
                   <!-- Wyswieltanie listy uzytkownikow -->
    <?php include "wyswietlanieListyUzytkownikow.php"; ?>
 
+   <div class="modal" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenteredLabel">
 
+<?php 
+$przyciecie = trim($_POST['zapisanie'], "zapisanie");  
+$nazwa = mysql_num_rows(mysql_query("SELECT login FROM logowanie WHERE ID = '".$przyciecie."'")) ;
+echo $nazwa;      
+?>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form action="" method="post">
+        <div class='form-group'>
+          <label for='formGroupExampleInput'>Login</label>
+          <input type='text' class='form-control border-primary' name='loginmodyfikacji' id='formGroupExampleInput'  value=''>
+        </div>
+        
+        <div class='form-group'>
+        <label for='formGroupExampleInput'>Hasło</label>
+        <input type='password' class='form-control border-primary' name='haslomodyfikacji' id='formGroupExampleInput' value=''>
+        </div>
+
+        <div class='form-group'>
+        <label for='formGroupExampleInput'>Mail</label>
+        <input type='text' class='form-control border-primary' name='mailmodyfikacji' id='formGroupExampleInput' value=''>
+        </div>
+        
+        <div class='form-group'>
+        <label for='formGroupExampleInput'>Imie</label>
+        <input type='text' class='form-control border-primary' name='imiemodyfikacji' id='formGroupExampleInput' value=''>
+        </div>     
+
+        
+        <div class='form-group'>
+        <label for='formGroupExampleInput'>Nazwisko</label>
+        <input type='text' class='form-control border-primary' name='nazwiskomodyfikacji' id='formGroupExampleInput'value=''>
+        </div>
+
+        <select class='statusdomodyfikacji custom-select'>
+          <option value='Odblokowany' selected >Odblokowany</option>
+          <option value='Zablokowany'>Zablokoway</option>
+         </select>
+        
+        <!-- <?php include "edycjaUzytkownika.php"; ?> -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" type="submit" name="zapisanie" data-dismiss="modal">Zapisz</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"> Anuluj</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
                   
 
-</div></div>
+</div>            </div>
                 </div>
               </div>
             </div>

@@ -8,16 +8,7 @@ if(isset($_POST['usuwanie'])){
 }
 }
 
-if(isset($_POST['dodawanie'])){
 
-    if($_POST['mail'] != "" && $_POST['login'] != "" && $_POST['imie'] != "" && $_POST['nazwisko'] != "" ){
-      
-        mysql_query("INSERT INTO logowanie (mail, login, imie, nazwisko, status) VALUES ('".$_POST['mail']."','".$_POST['login']."','".$_POST['imie']."','".$_POST['nazwisko']."','".$_POST['status']."')");
-    }
-
-
-
-}
   
 echo "<table class='table table-striped'>
 <thead><tr>
@@ -29,10 +20,11 @@ echo "<table class='table table-striped'>
 <th> Imie </th>
 <th> Nazwisko </th>
 <th> Status </th>
+<th> Edycja </th>
 </tr></thead><tbody>";
 
 $result = mysql_query("SELECT * FROM logowanie");
-
+$i = 1;
 while($row = mysql_fetch_array($result)) {
          echo "<tr>";
          echo "<td>".$row[0]."</td>";
@@ -44,7 +36,12 @@ while($row = mysql_fetch_array($result)) {
          echo "<td>".$row[7]."</td>";
          if($row[8] == "Odblokowany"){ echo "<td><span class='badge badge-success'>".$row[8]."</span></td>"; }
          elseif($row[8] == "Zablokowany"){ echo "<td><span class='badge badge-danger'>".$row[8]."</span></td>"; }
+         echo "<td>
+         <input type='submit' class='btn btn-primary' data-toggle='modal' data-target='#exampleModalCentered' name='zapisanie".$row[0]."' value='".$row[0]."'>
+         <input type='hidden' name='dane' value='".$row[3]."'>   
+        </td>";
          echo "</tr>";
+         $i++;
     }
     echo '</tbody></table>';
 ?>
