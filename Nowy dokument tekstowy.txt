@@ -1,0 +1,3 @@
+SELECT logowanie.mail, pracownicy.imiep from logowanie, pracownicy where logowanie.ID = pracownicy.IDLogin;
+
+SELECT logowanie.mail, pracownicy.imiep from logowanie inner join pracownicy on logowanie.ID = pracownicy.IDLogin;
