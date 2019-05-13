@@ -1,16 +1,5 @@
 <?php 
-session_start();
-mysql_connect("localhost","root","");
-mysql_select_db("login");
-
-
-$imie = $_SESSION['imie'];
-$mail = $_SESSION['mail'];
-$haslo = $_SESSION['haslo'];
-$login = $_SESSION['mlogin'];
-$nazwisko = $_SESSION['nazwisko'];
-$dataLogDe = $_SESSION['dataLogDe'];
-$dataLogSu = $_SESSION['dataLogSu'];
+include ("daneWejsciowe.php");
 ?>
 
 <!DOCTYPE html>
@@ -20,8 +9,10 @@ $dataLogSu = $_SESSION['dataLogSu'];
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="refresh" content="s">
   <title>Home</title>
   <!-- plugins:css -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css">
@@ -56,7 +47,7 @@ $dataLogSu = $_SESSION['dataLogSu'];
           </a>
         </li>
           <li class="nav-item">
-            <a href="modyfikacja.php" class="nav-link"><i class="menu-icon fa fa-lock"></i>Bezpieczeństwo</a>
+            <a href="" class="nav-link"><i class="menu-icon fa fa-lock"></i>Bezpieczeństwo</a>
             </a>
           </li>
           <li class="nav-item">
@@ -217,7 +208,7 @@ $dataLogSu = $_SESSION['dataLogSu'];
                         <button class="btn btn-light">Anuluj</button>                        
                         </form>
 
-                      <h4 class="card-title mt-5"><i class="fas fa-user-tag"></i> Szukanie użytkownika</h4>
+                      <!-- <h4 class="card-title mt-5"><i class="fas fa-user-tag"></i> Szukanie użytkownika</h4>
 
                       <form method="post" action="">
                       <div class="input-group">
@@ -228,15 +219,16 @@ $dataLogSu = $_SESSION['dataLogSu'];
                                 <input type="text" class="form-control" aria-label="Text input with dropdown button" name="szukajka">
                               </div>
                             </form>
-                            <!-- szukanie php -->
-                            <?php include 'szukanie.php';?>                  
+                            
+                            <?php include 'szukanie.php';?>                   -->
                     </div>                     
                     </div>
                   </div>
                 </div>
+             </div>
+             </div>
+                <div class="card">
                 <div class="card-body">
-             </div>
-             </div>
                   <h4 class="card-title ml-4"><i class="fas fa-user-friends"></i> Lista użytkoników</h4>
                 <div class="table-responsive">
 
@@ -244,65 +236,9 @@ $dataLogSu = $_SESSION['dataLogSu'];
                   <!-- Wyswieltanie listy uzytkownikow -->
    <?php include "wyswietlanieListyUzytkownikow.php"; ?>
 
-   <div class="modal" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenteredLabel">
 
-<?php 
-$przyciecie = trim($_POST['zapisanie'], "zapisanie");  
-$nazwa = mysql_num_rows(mysql_query("SELECT login FROM logowanie WHERE ID = '".$przyciecie."'")) ;
-echo $nazwa;      
-?>
-        </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <form action="" method="post">
-        <div class='form-group'>
-          <label for='formGroupExampleInput'>Login</label>
-          <input type='text' class='form-control border-primary' name='loginmodyfikacji' id='formGroupExampleInput'  value=''>
-        </div>
-        
-        <div class='form-group'>
-        <label for='formGroupExampleInput'>Hasło</label>
-        <input type='password' class='form-control border-primary' name='haslomodyfikacji' id='formGroupExampleInput' value=''>
-        </div>
-
-        <div class='form-group'>
-        <label for='formGroupExampleInput'>Mail</label>
-        <input type='text' class='form-control border-primary' name='mailmodyfikacji' id='formGroupExampleInput' value=''>
-        </div>
-        
-        <div class='form-group'>
-        <label for='formGroupExampleInput'>Imie</label>
-        <input type='text' class='form-control border-primary' name='imiemodyfikacji' id='formGroupExampleInput' value=''>
-        </div>     
-
-        
-        <div class='form-group'>
-        <label for='formGroupExampleInput'>Nazwisko</label>
-        <input type='text' class='form-control border-primary' name='nazwiskomodyfikacji' id='formGroupExampleInput'value=''>
-        </div>
-
-        <select class='statusdomodyfikacji custom-select'>
-          <option value='Odblokowany' selected >Odblokowany</option>
-          <option value='Zablokowany'>Zablokoway</option>
-         </select>
-        
-        <!-- <?php include "edycjaUzytkownika.php"; ?> -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" type="submit" name="zapisanie" data-dismiss="modal">Zapisz</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"> Anuluj</button>
-        </form>
-      </div>
-    </div>
-  </div>
 </div>
+
                   
 
 </div>            </div>
@@ -323,6 +259,7 @@ echo $nazwa;
   <!-- plugins:js -->
   <script src="vendors/js/vendor.bundle.base.js"></script>
   <script src="vendors/js/vendor.bundle.addons.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page-->
   <!-- End plugin js for this page-->
@@ -332,6 +269,12 @@ echo $nazwa;
   <!-- endinject -->
   <!-- Custom js for this page-->
   <!-- End custom js for this page-->
+  <script>
+  $(document).ready( function () {
+    $('#tabelka').DataTable();
+} );
+</script>
+  
 </body>
 
 </html>

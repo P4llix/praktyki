@@ -1,17 +1,5 @@
 <?php 
-session_start();
-mysql_connect("localhost","root","");
-mysql_select_db("login");
-
-
-$imie = $_SESSION['imie'];
-$mail = $_SESSION['mail'];
-$haslo = $_SESSION['haslo'];
-$login = $_SESSION['mlogin'];
-$nazwisko = $_SESSION['nazwisko'];
-$dataLogDe = $_SESSION['dataLogDe'];
-$dataLogSu = $_SESSION['dataLogSu'];
-
+include ("daneWejsciowe.php");
 
 $zapytanie = mysql_query("SELECT ID FROM logowanie");
 // $ostatni = mysql_num_rows(mysql_query("SELECT * FROM logowanie ORDER BY ID DESC LIMIT 1")); 
@@ -65,7 +53,7 @@ $ostatni = 0;
           </a>
         </li>
             <li class="nav-item">
-            <a href="modyfikacja.php" class="nav-link"><i class="menu-icon fa fa-lock"></i>Bezpieczeństwo</a>
+            <a href="" class="nav-link"><i class="menu-icon fa fa-lock"></i>Bezpieczeństwo</a>
             </a>
           </li>
           <li class="nav-item">
