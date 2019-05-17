@@ -1,0 +1,58 @@
+html{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("access-adult-commerce-1181317.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.main{
+    background-color: rgba(15, 15, 15, 0.9);
+    height: cover;
+    text-align: center;
+    border-radius: 15px;
+    border: 2px solid #428bca;
+
+}
+
+.obrazek{
+    background-color: rgba(15, 15, 15, 1);
+    width: 15vw;
+    height: 15vw;
+    color: #428bca;
+    font-size: 40px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid #428bca;
+    z-index: 1;
+    transform: translateY(-120%);
+}
+
+.info-logowanie{
+    padding: 0 30px;
+    color: white;
+    text-align: left;
+}
+
+.guzik{
+    width: 50%;
+}
+
+@media only screen and (max-width: 757px) {
+    .info-logowanie{
+        padding: 0%;
+    }
+    body{
+        background-position-x: left;
+    }
+  }
